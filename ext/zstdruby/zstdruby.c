@@ -103,6 +103,8 @@ static VALUE decompress_streaming(VALUE self, VALUE enumerator)
     }
     if (readHint == 0) {
       // Handle concatenated streams
+      ZSTD_freeDStream(dstream);
+      dstream = NULL;
       decompress_streaming(self, enumerator);
     }
   }
